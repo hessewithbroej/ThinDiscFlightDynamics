@@ -6,6 +6,3 @@ full5_drag_lift_g.m is a Mathematica notebook that contains the derived equation
 
 functional_solver.m is a Mathematica notebook that contains a functionized form of the equation and solver, allowing one to use the Table[] command to simulate batches of flights under varied initial conditions. It is most useful to generate large amounts of flight data to map out the parameter space of initial launch conditions.
 
-syseqns.m contains the set of equations that describe the lift vector. It's quite tedious given the relevant coordinate transformations.
-
-vector_vis_full.m contains the basic visualization code used to demonstrate the forces acting on the flying disc.
