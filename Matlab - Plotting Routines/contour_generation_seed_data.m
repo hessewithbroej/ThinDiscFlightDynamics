@@ -1,9 +1,16 @@
-new_csv = readtable("C:\Users\hesse\Desktop\Academic Documents\Seeds\Data\SeedData_new.csv");
+% generates the various contour plots included in the manuscript by
+% filtering SeedData in various ways and passing the data to the
+% "create_contour.m" function, which generates the figures and allows the
+% user to specify titles, axis labels, contour labels, etc
+
+%update filepath to the location of SeedData.csv
+new_csv = readtable("C:\Users\hesse\Desktop\Code\ThinDiscFlightDynamics\Data\SimulationData\SeedData.csv");
 
 
-%% phi-beta contours
+%% phi-beta contours. Dispersal range as a function of launch orientation phi
+% and launch angle beta. Figure 6 in "backspin in Ruellia ... conditions"
 
-%phi-beta contours
+%phi-beta contours. omega 500 Hz, h 0.5m, velocity 10 m/s
 filtered_o500h5v10 = new_csv(new_csv.Omega_Hz==500 & new_csv.H_m==0.5 & new_csv.V_ms_1==10,:);
 x = filtered_o500h5v10(:,["Phi_deg"]).Phi_deg;
 y = filtered_o500h5v10(:,["Beta_deg"]).Beta_deg;
@@ -11,7 +18,7 @@ z1 = filtered_o500h5v10(:,["Distance_m"]).Distance_m;
 
 create_contour(x,y,z1,"\_", "$\beta$ (deg)", "$\omega$=500 Hz", 1:1:15, 90:45:270, 0:15:65)
 
-
+%phi-beta contours. omega 1000 Hz, h 0.5m, velocity 10 m/s
 filtered_o1000h5v10 = new_csv(new_csv.Omega_Hz==1000 & new_csv.H_m==0.5 & new_csv.V_ms_1==10,:);
 x = filtered_o1000h5v10(:,["Phi_deg"]).Phi_deg;
 y = filtered_o1000h5v10(:,["Beta_deg"]).Beta_deg;
@@ -19,7 +26,7 @@ z1 = filtered_o1000h5v10(:,["Distance_m"]).Distance_m;
 
 create_contour(x,y,z1,"$\phi$ (deg)", "", "$\omega$=1000 Hz", 1:1:15, 90:45:270, 0:15:65)
 
-
+%phi-beta contours. omega 1500 Hz, h 0.5m, velocity 10 m/s
 filtered_o1500h5v10 = new_csv(new_csv.Omega_Hz==1500 & new_csv.H_m==0.5 & new_csv.V_ms_1==10,:);
 x = filtered_o1500h5v10(:,["Phi_deg"]).Phi_deg;
 y = filtered_o1500h5v10(:,["Beta_deg"]).Beta_deg;
@@ -28,8 +35,12 @@ z1 = filtered_o1500h5v10(:,["Distance_m"]).Distance_m;
 create_contour(x,y,z1,"\_", "", "$\omega$=1500 Hz", 1:1:15, 90:45:270, 0:15:65)
 
 
-%% optimal-phi contour
+%% optimal-phi contour. 
+% Scans through SeedData and determines the range-maximizing launch
+% orientation phi for each unique pair of beta and omega. Used to generate
+% Figure 7 in "Backsping in ruellia... conditions"
 
+%fix launch height 0.5m and velocity 10m/s
 filtered_h5v10 = new_csv(new_csv.H_m==0.5 & new_csv.V_ms_1==10,:);
 betas = unique(filtered_h5v10(:,["Beta_deg"]).Beta_deg);
 omegas = unique(filtered_h5v10(:,["Omega_Hz"]).Omega_Hz);

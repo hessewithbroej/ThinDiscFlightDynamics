@@ -1,6 +1,8 @@
 function fig_handle = create_contour(x_data,y_data,z_data,x_label, y_label, plottitle, levels, x_ticks, y_ticks)
 % fig_handle = create_contour(x_data,y_data,z_data,x_label, y_label, plottitle, levels, x_ticks, y_ticks)
-% create_contour  Create contour plot from 1d vectorized data
+% create_contour  Create contour plot from 1d vectorized data, allow for
+% user to add contour labels by clicking on contour lines, and to specify
+% plot details like title, axis labels, axis ticks...
 % INPUTS:
 %   x_data: 1d vector of data to be plotted on xAxis
 %   y_data: 1d vector of data to be plotted on yAxis
@@ -15,6 +17,10 @@ function fig_handle = create_contour(x_data,y_data,z_data,x_label, y_label, plot
 % OUTPUTS:
 %   fig_handle = figure handle of generated plot
 
+%Matlab's inbuilt contourf function requires contour data as a grid/2d
+%matrix for each X and Y coordinate and the Z values (as might be generated
+%by a call to the meshgrid function). Reshape the data into a form useable
+%by contourf
 x_step = (max(x_data)-min(x_data))/(size(unique(x_data),1)-1);
 y_step = (max(y_data)-min(y_data))/(size(unique(y_data),1)-1);
 

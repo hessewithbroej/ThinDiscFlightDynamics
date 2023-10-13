@@ -1,5 +1,10 @@
+%generate a 3d visualization of seed trajectories given the set of xyz
+%coordinates over time. Also have access to phi and alpha over time, if one
+%wanted to color trajectories as a function of phi to demonstrate how the
+%range-maximizing orientation extracts lift.
 filepath = "C:\Users\hesse\Desktop\Academic Documents\Seeds\Data\SeedTrajectories.xlsx";
 
+%read in the data
 trajs = {};
 opt=detectImportOptions(filepath);
 shts=sheetnames(filepath);
@@ -32,6 +37,8 @@ rainbow = [1,        0,             0;
 
 figure
 hold on
+%plot the trajectory from launch until the first instance where the seed's
+%y coordinate goes negative (aka seed has reached the ground)
 for i =1:numel(trajs)
     gndrow = find(trajs{i}(:,3) <= 0, 1); %find when seed hits ground
     plot3(trajs{i}(1:gndrow,2), trajs{i}(1:gndrow,4), trajs{i}(1:gndrow,3), 'Color',rainbow(i,:), 'LineWidth', 1.5)
