@@ -1,6 +1,6 @@
 # ThinDiscFlightDynamics
 Repository containing all codes used in the development of _Thin Disc Flight Dynamics with Applications to Ballochore Seed Dispersal_
-Contact jlha2018@mymail.pomona.edu with questions
+Contact joseph.hesse-withbroe@colorado.edu (or dwight.whitaker@pomona.edu) with questions.
 
 Simulation codes are all written in Mathematica and contained the in the Mathematica folder.
 
