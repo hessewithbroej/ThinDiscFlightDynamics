@@ -2,15 +2,15 @@
 %coordinates over time. Also have access to phi and alpha over time, if one
 %wanted to color trajectories as a function of phi to demonstrate how the
 %range-maximizing orientation extracts lift.
-filepath = "C:\Users\hesse\Desktop\Code\ThinDiscFlightDynamics\Data\output1000.xlsx";
+filepath = "C:\Users\hesse\Desktop\Code\ThinDiscFlightDynamics\Data\SimulationData\SeedTrajectories.xlsx";
 
 %read in the data
 trajs = {};
 opt=detectImportOptions(filepath);
 shts=sheetnames(filepath);
-for i=2:numel(shts)
+for i=1:numel(shts)
   traj = readmatrix(filepath,'Sheet',shts(i),'Range','A2:F1002');
-  trajs{i-1} = traj;
+  trajs{i} = traj;
 end
 %% 
 % %color triplets for rainbow colormap
@@ -79,10 +79,10 @@ for i =1:numel(trajs)
     plot3(trajs{i}(1:gndrow,3), trajs{i}(1:gndrow,5), trajs{i}(1:gndrow,4), 'Color',rainbow(i,:), 'LineWidth', 1.5)
     
 end
-grid on
+axis equal
 xlabel("X (m)", 'Interpreter','latex','FontSize',16)
 ylabel("Z (m)",'Interpreter','latex','FontSize',16)
 zlabel("Y (m)",'Interpreter','latex','FontSize',16)
 zlim([0,5])
 xlim([0,12])
-ylim([-8,8])
+ylim([-6,6])
