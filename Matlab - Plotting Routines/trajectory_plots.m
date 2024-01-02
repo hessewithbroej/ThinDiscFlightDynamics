@@ -8,9 +8,9 @@ filepath = "C:\Users\hesse\Desktop\Code\ThinDiscFlightDynamics\Data\SimulationDa
 trajs = {};
 opt=detectImportOptions(filepath);
 shts=sheetnames(filepath);
-for i=1:numel(shts)
+for i=2:numel(shts)
   traj = readmatrix(filepath,'Sheet',shts(i),'Range','A2:F1002');
-  trajs{i} = traj;
+  trajs{i-1} = traj;
 end
 %% 
 % %color triplets for rainbow colormap
@@ -75,8 +75,8 @@ hold on
 %plot the trajectory from launch until the first instance where the seed's
 %y coordinate goes negative (aka seed has reached the ground)
 for i =1:numel(trajs)
-    gndrow = find(trajs{i}(:,4) <= 0, 1); %find when seed hits ground
-    plot3(trajs{i}(1:gndrow,3), trajs{i}(1:gndrow,5), trajs{i}(1:gndrow,4), 'Color',rainbow(i,:), 'LineWidth', 1.5)
+    gndrow = find(trajs{i}(:,3) <= 0, 1); %find when seed hits ground
+    plot3(trajs{i}(1:gndrow,2), trajs{i}(1:gndrow,4), trajs{i}(1:gndrow,3), 'Color',rainbow(i,:), 'LineWidth', 1.5)
     
 end
 axis equal

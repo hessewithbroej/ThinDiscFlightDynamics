@@ -21,12 +21,12 @@ function fig_handle = create_contour(x_data,y_data,z_data,x_label, y_label, plot
 %matrix for each X and Y coordinate and the Z values (as might be generated
 %by a call to the meshgrid function). Reshape the data into a form useable
 %by contourf
-x_step = (max(x_data)-min(x_data))/(size(unique(x_data),1)-1);
-y_step = (max(y_data)-min(y_data))/(size(unique(y_data),1)-1);
+x_step = (max(x_data)-min(x_data))/(numel(unique(x_data))-1);
+y_step = (max(y_data)-min(y_data))/(numel(unique(y_data))-1);
 
-xx = reshape(x_data,[size(unique(y_data),1),size(unique(x_data),1)]);
-yy = reshape(y_data,[size(unique(y_data),1),size(unique(x_data),1)]);
-zz = reshape(z_data,[size(unique(y_data),1),size(unique(x_data),1)]);
+xx = reshape(x_data,[numel(unique(x_data)),numel(unique(y_data))]);
+yy = reshape(y_data,[numel(unique(x_data)),numel(unique(y_data))]);
+zz = reshape(z_data,[numel(unique(x_data)),numel(unique(y_data))]);
 
 
 
